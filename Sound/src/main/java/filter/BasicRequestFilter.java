@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 public class BasicRequestFilter extends HttpFilter implements Filter {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 		System.out.println(((HttpServletRequest)request).getRequestURI() + "[" + ((HttpServletRequest)request).getMethod()+"]");
