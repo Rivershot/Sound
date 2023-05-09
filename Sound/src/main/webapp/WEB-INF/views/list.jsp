@@ -123,44 +123,81 @@ span{
 
 <script type="text/javascript">
 
-for( var i = 1; i<4; i++) {
+var wavesurfer = []
+
+for( var i = 1; i<11; i++) {
 	
-	var wavesurfer = WaveSurfer.create({
-		container: '#wave' + i,
+	 wavesurfer[i] = WaveSurfer.create({
+		container: '#wave'+i,
 		waveColor: 'violet',
 		progressColor: 'purple',
 		barWidth: 2,
 		barHeight: 1.5,
 		pixelRatio: 30, // 이 값 필요함 
+		normalize: true, // 피크의 값을 모두 normailize한다
+		barMinHeight: 50, // bar의 높이 조절 0db 값도 들어올려 모든 너비를 맞춘다
 	})
 	
-	wavesurfer.setHeight(30);
+	wavesurfer[i].setHeight(30);
+	wavesurfer[i].setCursorColor('white');
+	wavesurfer[i].load('../resources/wave/'+ i +'.wav');	
 	
-	wavesurfer.setCursorColor('white');
-	wavesurfer.load('../resources/wave/'+ i +'.wav');	
-	
-// 	wavesurfer.on('ready', function () {
-// 	    wavesurfer.play();
-// 	});
+
+	wavesurfer[i].on('ready', function () {
+	    wavesurfer[i].play();
+	});
 	
 	
 }	
+
+$("#wave1").click(function() {
+	wavesurfer[1].play();
+})
+$("#wave2").click(function() {
+	wavesurfer[2].play();
+})
+$("#wave3").click(function() {
+	wavesurfer[3].play();
+})
+$("#wave4").click(function() {
+	wavesurfer[4].play();
+})
+$("#wave5").click(function() {
+	wavesurfer[5].play();
+})
+$("#wave6").click(function() {
+	wavesurfer[6].play();
+})
+$("#wave7").click(function() {
+	wavesurfer[7].play();
+})
+$("#wave8").click(function() {
+	wavesurfer[8].play();
+})
+$("#wave9").click(function() {
+	wavesurfer[9].play();
+})
+$("#wave10").click(function() {
+	wavesurfer[10].play();
+})
+
+
 
 $(function() {
 	
 	$("#play").click(function() {
 
-		if( wavesurfer.isPlaying() ) {
-			wavesurfer.pause();
+		if( wavesurfer[i].isPlaying() ) {
+			wavesurfer[i].pause();
 			$("#play").html('<img class="btnImg" src="../resources/img/play.png">');
-		} else if ( !wavesurfer.isPlaying() ) {
-			wavesurfer.play();
+		} else if ( !wavesurfer[i].isPlaying() ) {
+			wavesurfer[i].play();
 			$("#play").html('<img class="btnImg" src="../resources/img/pause.png">');
 		}
 		
 	})
 	
-	$("#curTime").val(wavesurfer.getCurrentTime());
+	
 	
 })
 
