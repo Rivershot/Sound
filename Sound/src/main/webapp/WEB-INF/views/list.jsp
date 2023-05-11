@@ -109,8 +109,8 @@ span{
 			<div class="tr">
 				<div class="file"><div>${list.soundno }</div></div>
 				<div class="file"><div>${list.name }</div></div>
-				<div class="file" >
-					<div id="wave${list.soundno }"></div>
+				<div class="file" data-no="${list.soundno }" >
+					<div id="wave${list.soundno }" data-no="${list.soundno }"></div>
 				</div>
 				<div class="file"><div>${list.tempo }</div></div>
 				<div class="file"><div>${list.time }</div></div>
@@ -124,6 +124,7 @@ span{
 <script type="text/javascript">
 
 var wavesurfer = []
+var playbtn = []
 
 for( var i = 1; i<11; i++) {
 	
@@ -132,6 +133,7 @@ for( var i = 1; i<11; i++) {
 		waveColor: 'violet',
 		progressColor: 'purple',
 		barWidth: 2,
+		reposive: true,
 		barHeight: 1.5,
 		pixelRatio: 30, // 이 값 필요함 
 		normalize: true, // 피크의 값을 모두 normailize한다
@@ -141,66 +143,33 @@ for( var i = 1; i<11; i++) {
 	wavesurfer[i].setHeight(30);
 	wavesurfer[i].setCursorColor('white');
 	wavesurfer[i].load('../resources/wave/'+ i +'.wav');	
-	
 
-	wavesurfer[i].on('ready', function () {
-	    wavesurfer[i].play();
-	});
-	
 	
 }	
 
-$("#wave1").click(function() {
-	wavesurfer[1].play();
-})
-$("#wave2").click(function() {
-	wavesurfer[2].play();
-})
-$("#wave3").click(function() {
-	wavesurfer[3].play();
-})
-$("#wave4").click(function() {
-	wavesurfer[4].play();
-})
-$("#wave5").click(function() {
-	wavesurfer[5].play();
-})
-$("#wave6").click(function() {
-	wavesurfer[6].play();
-})
-$("#wave7").click(function() {
-	wavesurfer[7].play();
-})
-$("#wave8").click(function() {
-	wavesurfer[8].play();
-})
-$("#wave9").click(function() {
-	wavesurfer[9].play();
-})
-$("#wave10").click(function() {
-	wavesurfer[10].play();
-})
+// var waveno = document.querySelector('#wave7')
+// console.log(waveno.dataset.no)
 
+$('.file').click(function() {
+
+	var wave = $(this).data('no')
+	
+	wavesurfer[wave].play()
+	
+})
 
 
 $(function() {
-	
 	$("#play").click(function() {
-
-		if( wavesurfer[i].isPlaying() ) {
-			wavesurfer[i].pause();
+		if( wavesurfer.isPlaying() ) {
+			wavesurfer.pause();
 			$("#play").html('<img class="btnImg" src="../resources/img/play.png">');
-		} else if ( !wavesurfer[i].isPlaying() ) {
-			wavesurfer[i].play();
+		} else if ( !wavesurfer.isPlaying() ) {
+			wavesurfer.play();
 			$("#play").html('<img class="btnImg" src="../resources/img/pause.png">');
 		}
-		
 	})
-	
-	
-	
 })
-
 
 </script>
 
