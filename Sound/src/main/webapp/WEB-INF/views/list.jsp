@@ -92,6 +92,7 @@ span{
 <body>
 <div id="topWrap">
 	<h1>Sound list</h1>
+	<h3>- SoundSource - </h3>
 </div>
 
 
@@ -155,7 +156,6 @@ $('.file').click(function() {
 	var wave = $(this).data('no')
 	
 	wavesurfer[wave].play()
-	
 })
 
 
